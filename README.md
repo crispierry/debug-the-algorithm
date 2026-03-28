@@ -29,6 +29,29 @@ Output goes to `dist/` -- deploy anywhere (Vercel, Netlify, static host, or embe
 
 `netlify.toml` is included, so Netlify can pick up the build settings automatically.
 
+## QA and Production Deploys
+
+This repo is set up for manual Netlify deploys so you can avoid Netlify's Git-triggered build pipeline and keep credit usage under control.
+
+- QA deploy: `npm run deploy:qa`
+- Production deploy: `npm run deploy:prod`
+- GitHub Actions workflows:
+  - `Netlify QA Deploy`
+  - `Netlify Production Deploy`
+
+Recommended setup:
+
+- Keep Netlify Git auto-deploys disabled for this site
+- Use the QA workflow or `npm run deploy:qa` for reviewable test deploys
+- Use the production workflow or `npm run deploy:prod` only when you want to ship
+
+GitHub Actions expects these repository secrets:
+
+- `NETLIFY_AUTH_TOKEN`
+- `NETLIFY_SITE_ID`
+
+The QA workflow publishes a stable draft URL alias named `qa-preview`. Production deploys publish to the main site URL.
+
 ## Project Structure
 
 ```
